@@ -1,0 +1,166 @@
+//ヘッダファイル-------------------------
+
+#include<stdio.h>
+
+//定数定義-------------------------------
+
+#define FAILED -1  //探索失敗
+
+//プロトタイプ宣言-----------------------
+
+void Search(int[],int,int);        //番兵法探索ver数字（探索する配列 , 探す値 , 要素数）
+void Copy_array(int*,int*,int);    //二つの配列の中身をコピー（渡すP , 受けるP , 要素数 ）
+void Bubble_array(int*,int);       //バブルソート（元のP , 要素数）
+double Mid_array(double*,int);     //配列の中身の中央値を返す（調べるP , 要素数）
+int Lenght_str(char*);             //文字列の長さを返す（調べるP）
+void Revers_str(char*,int);        //文字列を反転する（元のP , 文字列の長さ）
+void Devide_str(char*,char*,char*);//文字列の中から数字と文字に分別する（元のP , 数字を格納P , 文字を格納P）
+
+
+//構造体---------------------------------
+
+//自作関数-------------------------------
+
+
+void Search(int v[],int key,int n)
+{
+	int i;
+	v[n]=key;
+
+	for(i=0;v[i]!=key;i++){
+	;}
+
+	(i<n) ? i:FAILED;
+
+	if(i>=n)
+	{
+		printf("探索に失敗しました\n");
+	}
+	else{
+		printf("%dは%d番目に格納されていました\n",key,i+1);
+	}
+}
+
+
+
+
+
+void Copy_array(int *s, int *d, int n)
+{
+	while(n--)
+		*d++=*s++;
+
+}
+
+
+
+
+void Bubble_array(int *q,int m)
+{
+	int i,j;
+
+		for(i=0;i<m-1;i++){
+			for(j=m-1;j>i;j--){
+				if(*(q+j-1)>*(q+j))
+				{
+					int temp=*(q+j);
+					*(q+j)=*(q+j-1);
+					*(q+j-1)=temp;
+				}
+			}
+		}
+}
+
+
+
+
+
+double Mid_array(double *q,int m)
+{
+	int i,j;
+	double mix;
+
+		for(i=0;i<m-1;i++){
+			for(j=m-1;j>i;j--){
+				if(*(q+j-1)>*(q+j))
+				{
+					int temp=*(q+j);
+					*(q+j)=*(q+j-1);
+					*(q+j-1)=temp;
+				}
+			}
+		}
+
+		if(m%2==0)
+		{
+			mix=*(q+m/2)+*(q+m/2-1);
+			mix=mix/2;
+		}
+
+	return (m%2!=0) ? *(q+m/2):mix;
+
+}
+
+
+
+
+
+int Lenght_str(char *p)
+{
+	int i=0;
+
+	while(*p!='\0')
+	{
+		p++;
+		i++;
+	}
+
+	return i;
+}
+
+
+
+
+
+void Revers_str(char *q,int length)
+{
+	char temp;
+	int i,j=length-1;
+
+	for(i=0; i<length/2; i++){
+
+		temp=*(q+i);
+		*(q+i)=*(q+j);
+		*(q+j)=temp;
+		j--;
+	}
+}
+
+
+
+
+
+void Devide_str(char *p,char *q, char *r)
+{
+
+	while(*p!='\0')
+	{
+
+		if (*p >= '0' && *p <= '9')
+		{
+			*q=*p;
+			q++;
+		}
+
+		if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z'))
+		{
+			*r=*p;
+			r++;
+		}
+
+		p++;
+	}
+
+	*q='\0';
+	*r='\0';
+}
